@@ -4,6 +4,8 @@ const https = require("https"); // Importing the HTTPS package
 
 const bodyparser = require("body-parser"); // Importing the body-parser package
 
+require("dotenv").config();
+
 const app = express(); // Creating a new Express application
 
 app.use(express.static(__dirname)); // Serving static files in the current directory
@@ -41,7 +43,7 @@ app.post("/", function (req, res) {
   const options = {
     // Configuring the HTTPS request
     method: "POST",
-    auth: "b28c4b2258:d6ee32065938ba6ef999c5dd52ad6697-us17",
+    auth: "Swagy:process.env.API_KEY",
   };
   // On success send users to success, otherwise on failure template
   const request = https.request(url, options, function (response) {
@@ -68,10 +70,8 @@ app.post("/failure", function (req, res) {
   res.redirect("/"); // Redirecting the user back to the home route
 });
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
   // Starting the server on port 3000
   console.log("server is running on port 3000.");
 });
 
-// Mailchimp api key = d6ee32065938ba6ef999c5dd52ad6697-us17
-// Audience or list id = b28c4b2258
