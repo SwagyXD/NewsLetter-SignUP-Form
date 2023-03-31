@@ -43,7 +43,7 @@ app.post("/", function (req, res) {
   const options = {
     // Configuring the HTTPS request
     method: "POST",
-    auth: "Swagy:process.env.API_KEY",
+    auth: "Swagy:" + process.env.API_KEY,
   };
   // On success send users to success, otherwise on failure template
   const request = https.request(url, options, function (response) {
